@@ -1,0 +1,65 @@
+<section id="content" class="bg-white/10 col-span-9 rounded-lg p-6 flex justify-center items-center">
+  <article id="stats" class="text-center">
+    <h1 class="font-bold py-4 uppercase">Statistiques</h1>
+    <div class="bg-black/60 to-white/5 p-6 rounded-lg">
+      <div class="flex flex-row space-x-4 items-center">
+        <div id="stats-1">
+          <i class="fa-solid fa-file-invoice-dollar text-4xl text-white"></i>
+        </div>
+        <div>
+          <p class="text-teal-300 text-sm font-medium uppercase leading-4">Devis</p>
+          <p class="text-white font-bold text-2xl inline-flex items-center space-x-2"> Fonctionnalité A venir </p>
+        </div>
+      </div>
+    </div>
+    <div class="my-6"></div> 
+    
+    <div class="bg-black/60 p-6 rounded-lg">
+      <div class="flex flex-row space-x-4 items-center">
+        <div id="stats-1">
+          <i class="fa-solid fa-euro-sign text-4xl text-white"></i>
+        </div>
+        <div>
+          <p class="text-blue-300 text-sm font-medium uppercase leading-4">Commandes</p>
+          <p class="text-white font-bold text-2xl inline-flex items-center space-x-2"> Total :  
+            <span><%= @num_orders %></span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="container mx-auto my-10 px-4">
+  <h1 class="text-2xl font-bold text-center mb-4">Mes Commandes :</h1>
+  <% if @orders.any? %>
+    <article class="order-list space-y-4">
+      <% @orders.each do |order| %>
+        <div class="order bg-gray-800 border rounded p-4 shadow-md text-center">
+          <h2 class="text-xl text-purple-400 font-semibold mb-2">Commande ## <%= order.id %></h2>
+          <p class="mb-2 text-white">Date de commande : <%= order.created_at.strftime("%d/%m/%Y %H:%M") %></p>
+          <p class="mb-2 text-green-400">Total de la commande : <%= number_to_currency(order.total_price, unit: '€') %></p>
+          <h3 class="text-lg font-semibold text-white mb-2">Articles commandés :</h3>
+          <ul class="order-items text-white list-disc pl-4">
+            <% order.order_items.each do |order_item| %>
+              <li class="flex items-center justify-center hover:text-purple-400">
+                <div class="flex items-center">
+                  <img src="<%= order_item.item.image_url %>" alt="<%= order_item.item.alt %>" class="w-8 h-8 mr-2">
+                  <div class="text-center">
+                    <span class="mr-2">
+                      <%= order_item.quantity %> x <%= order_item.item.title %> :
+                    </span>
+                    <a href="<%= order_item.item.image_url %>" target="_blank"><%= order_item.item.image_url %></a>
+                  </div>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </article>
+  <% else %>
+    <p class="text-2xl text-center text-gray-600 mt-4">Vous n'avez aucune commande passée.</p>
+  <% end %>
+</section>
+

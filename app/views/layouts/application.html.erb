@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Rustoff Graphisme</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio du graphiste spécialisé en dessin, dessin digital, 3D, animation, et plus encore. Découvrez son travail créatif et unique.">
+    <meta name="boutique" content="Découvrez sa boutique en ligne">
+    <meta name="keywords" content="graphiste, dessin, dessin digital, 3D, animation, art, portfolio, boutique">
+    <meta name="author" content="Rustoff">
+    <meta name="theme-color" content="#cfd7ff">
+    <meta property="og:title" content="Boutique et portfolio de Rustoff">
+    <meta property="og:description" content="Découvrez les créations artistiques de Rustoff, spécialisé en dessin, dessin digital, 3D, animation, et plus encore.">
+    <meta property="og:url" content="URL de votre site Web">
+    <meta property="og:type" content="website">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+  </head>
+  <body class="flex flex-col min-h-screen">
+    <header>
+        <%= render 'layouts/navbar' %>
+      <% if notice.present? %>
+        <p class="bg-green-200 text-green-800 border-t-4 border-green-600 rounded-b px-4 py-3 shadow-md my-2">
+          <%= notice %>
+        </p>
+      <% end %>
+
+      <% if alert.present? %>
+        <p class="bg-red-200 text-red-800 border-t-4 border-red-600 rounded-b px-4 py-3 shadow-md my-2">
+          <%= alert %>
+        </p>
+      <% end %>
+    </header>
+
+    <main class="flex-grow">
+      <%= render 'layouts/social_networks' %>
+      <%= yield %>
+    </main>
+    
+    <footer>
+      <%= render 'layouts/footer' %>
+    </footer>
+  </body>
+</html>

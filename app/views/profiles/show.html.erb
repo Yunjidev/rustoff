@@ -1,0 +1,29 @@
+<section class="max-w-2xl mx-auto mt-64 bg-gray-800 shadow-xl rounded-lg text-gray-900">
+  <article class="rounded-t-lg h-32 overflow-hidden">
+    <img class="object-cover object-top w-full" src='<%= asset_path('image4.png') %>' alt='Mountain'>
+  </article>
+  <article class="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
+    <% if @user.avatar.attached? %>
+      <%= image_tag @user.avatar, alt: "Avatar de l'utilisateur", class: "object-cover object-center h-32 w-32" %>
+    <% else %>
+      <img src="/assets/default_avatar.png" alt="Avatar par défaut" class="object-cover object-center h-32 w-32">
+    <% end %>
+  </article>
+  <article class="text-center mt-2">
+    <h2 class="mt-2 font-bold text-white"><%= @user.email %></h2>
+  </article>
+  <article class="p-4 mt-2 flex flex-wrap justify-center gap-4">
+    <div>
+      <%= link_to "Modifier le profil", edit_profile_path, class: "bg-purple-400 hover:bg-purple-300 text-black font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-sm" %>
+    </div>
+    <div>
+      <%= link_to "Modifier le Mot de passe", edit_user_registration_path, class: "bg-purple-400 hover:bg-purple-300 text-black font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-sm" %>
+    </div>
+    <div>
+      <%= link_to "Mes Commandes", orders_path, class: "bg-gray-500 hover:bg-gray-400 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-sm" %>
+    </div>
+    <div>
+      <%= button_to "Supprimer mon compte", registration_path("user"), data: { confirm: "Are you sure?", turbo_confirm: "Es-tu sûr??" }, method: :delete, class: "bg-red-500 hover:bg-red-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline delete-account-button" %>
+    </div>
+  </article>
+</section>

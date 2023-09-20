@@ -1,0 +1,49 @@
+<section class="py-6 mt-32">
+  <article class="flex bg-gray-800 rounded-lg shadow-lg overflow-hidden mx-auto max-w-sm lg:max-w-4xl">
+    <div class="hidden lg:block lg:w-1/2 bg-cover" style="background-image:url(<%= asset_path('dash.png') %>)"></div>
+    <div class="w-full p-8 lg:w-1/2">
+      <h2 class="text-2xl font-semibold text-white text-center">Devis</h2>
+      <%= form_with(model: @quote, url: quotes_path) do |form| %>
+        <% if @quote.errors.any? %>
+          <div class="bg-red-100 text-red-500 border border-red-400 px-4 py-3 rounded mb-4">
+            <h2 class="text-red-800">Il y a eu des erreurs :</h2>
+            <ul>
+              <% @quote.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="mt-4">
+          <%= form.label :first_name, 'Prénom', class: "block text-white text-sm font-bold mb-2" %>
+          <%= form.text_field :first_name, class: 'bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none' %>
+        </div>
+
+        <div class="mt-4">
+          <%= form.label :last_name, 'Nom', class: "block text-white text-sm font-bold mb-2" %>
+          <%= form.text_field :last_name, class: 'bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none' %>
+        </div>
+
+        <div class="mt-4">
+          <%= form.label :email, 'Adresse Email', class: "block text-white text-sm font-bold mb-2" %>
+          <%= form.email_field :email, class: 'bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none' %>
+        </div>
+
+        <div class="mt-4">
+          <%= form.label :description, 'Description de votre projet', class: "block text-white text-sm font-bold mb-2" %>
+          <%= form.text_area :description, class: 'bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none' %>
+        </div>
+
+        <div class="mt-4">
+          <%= form.label :category, 'Type de projet', class: "block text-white text-sm font-bold mb-2" %>
+          <%= form.select :category, ['3D', 'Animation', 'Logo', 'Twitch', 'Merch', 'Tattoo', 'Design divers', 'Avatars', 'Autres'], class: 'bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none' %>
+        </div>
+
+        <div class="mt-8">
+          <%= form.submit 'Soumettre', class: 'flex gap-3 cursor-pointer text-black font-semibold bg-gradient-to-r from-purple-300 to-purple-600 px-7 py-3 rounded-full border border-gray-600 hover:scale-105 duration-200 hover:text-black hover:border-gray-800 hover:from-purple-600 hover:to-purple-300' %>
+        </div>
+      <% end %>
+    </div>
+  </article>
+</section>
